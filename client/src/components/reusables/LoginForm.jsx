@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, NavLink } from "react-router-dom";
 import { useAuth } from "../../context/Auth.jsx";
 
 const LoginForm = () => {
@@ -78,6 +78,9 @@ const LoginForm = () => {
           >
             Login
           </button>
+          <NavLink to="/register" style={{ textDecoration: "none" }}>
+            <p style={{ color: "#344c5c" }}>Don't have an account? Signup</p>
+          </NavLink>
         </form>
       </div>
     </>

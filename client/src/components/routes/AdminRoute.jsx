@@ -3,30 +3,30 @@ import { useAuth } from "../../context/Auth";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
-const Private = () => {
+const AdminRoute = () => {
   const [ok, setOk] = useState(false);
   const [auth, setAuth] = useAuth();
-
+  const [time, setTimer] = useState(10);
   const navigate = useNavigate();
   const location = useLocation();
 
   // timer to go back to login
 
-  // const interval = setInterval(() => {
-  //   setTimer((prev) => prev - 1);
-  // }, 1000);
-  // // clearInterval(interval);
-  // console.log(time);
+  const interval = setInterval(() => {
+    setTimer((prev) => prev - 1);
+  }, 1000);
+  // clearInterval(interval);
+  console.log(time);
 
   // useEffect for accessing private routes
   useEffect(() => {
     // Set the default authorization header for all requests
-    console.log(auth?.token);
+    // console.log(auth?.token);
     // const autho = localStorage.getItem("auth");
     // axios.defaults.headers.common["Authorization"] = autho.token;
 
     const authCheck = async () => {
-      const res = await axios.get("http://localhost:8080/api/user-auth", {
+      const res = await axios.get("http://localhost:8080/api/admin-auth", {
         headers: {
           Authorization: await auth.token,
         },
@@ -44,11 +44,13 @@ const Private = () => {
         <span className="visually-hidden">Loading...</span>
       </div>
 
-      <>
-        <h2>Checking if you are eligible...</h2>
-      </>
-
-      <h2>You are unauthorized, click below</h2>
+      {time > 0 ? (
+        <>
+          <h2>Checking if you are eligible...</h2>
+        </>
+      ) : (
+        <h2>You are unauthorized, click below</h2>
+      )}
 
       <button
         className="btn btn-outline-dark mt-5"
@@ -60,4 +62,4 @@ const Private = () => {
   );
 };
 
-export default Private;
+export default AdminRoute;

@@ -1,8 +1,8 @@
 import React from "react";
-import Layout from "../../components/layout/Layout";
-import { useAuth } from "../../context/Auth";
-import UserMenu from "../../components/layout/UserMenu";
-const Dashboard = () => {
+import AdminMenu from "../../components/layout/AdminMenu";
+import Layout from "../../components/layout/Layout.jsx";
+import { useAuth } from "../../context/Auth.jsx";
+const AdminDashboard = () => {
   const [auth, setAuth] = useAuth();
   return (
     <>
@@ -11,7 +11,7 @@ const Dashboard = () => {
           <div className="container m-3 p-3">
             <div className="row">
               <div className="col-md-3">
-                <UserMenu />
+                <AdminMenu />
               </div>
               <div className="col-md-9">
                 <div className="card">
@@ -28,4 +28,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default AdminDashboard;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 const RegisterForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -89,6 +89,9 @@ const RegisterForm = () => {
           >
             register
           </button>
+          <NavLink to="/login" style={{ textDecoration: "none" }}>
+            <p style={{ color: "#344c5c" }}>Already have an account? Login</p>
+          </NavLink>
         </form>
       </div>
     </>

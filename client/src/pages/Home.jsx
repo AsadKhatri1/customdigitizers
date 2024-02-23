@@ -8,9 +8,9 @@ const Home = () => {
   const navigate = useNavigate();
   useEffect(() => {
     const login = localStorage.getItem("auth");
-    if (!login) {
-      navigate("/login");
-    }
+    // if (!login) {
+    //   navigate("/login");
+    // }
   }, []);
   return (
     <Layout>

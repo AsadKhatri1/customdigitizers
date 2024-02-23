@@ -10,12 +10,13 @@ const requireSignIn = async (req, res, next) => {
       req.headers.authorization,
       process.env.jwt_secret
     );
-    console.log("Decoded:", decode); // Check decoded token
+    // console.log("Decoded:", decode); // Check decoded token
     // passing decode to req.user to access in isAdmin
     req.user = decode;
     next();
   } catch (err) {
-    console.log(err);
+    console.error(err);
+    return res.status(401).json({ message: "Unauthorized" });
   }
 };
 

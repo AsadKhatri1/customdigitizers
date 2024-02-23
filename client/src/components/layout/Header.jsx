@@ -77,21 +77,54 @@ const Header = () => {
                 </>
               ) : (
                 <>
-                  {/* <li className="nav-item">
-                    <NavLink onClick={handleLogout} className="nav-link">
-                      <IoLogIn className="mx-2 mb-1" />
-                      Logout
-                    </NavLink>
-                  </li> */}
-                  <li className="nav-item">
-                    <NavLink onClick={handleLogout} className="nav-link">
-                      <IoLogOut className="mx-2 mb-1" />
-                      Logout
-                    </NavLink>
-                  </li>
+                  {auth.user.role === 1 ? (
+                    <></>
+                  ) : (
+                    <>
+                      <li className="nav-item">
+                        <NavLink
+                          to="/cart"
+                          className="nav-link"
+                          style={{ color: "#344c5c" }}
+                        >
+                          <FaCartArrowDown className="mx-2 mb-1" />
+                          cart(0)
+                        </NavLink>
+                      </li>
+                    </>
+                  )}
+                  <div className="dropdown ">
+                    <button
+                      className="btn btn-outline-dark dropdown-toggle mx-2"
+                      type="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      {auth?.user?.name}
+                    </button>
+                    <ul className="dropdown-menu">
+                      <li className="nav-item">
+                        <NavLink
+                          to={`/dashboard/${
+                            auth?.user?.role === 1 ? "admin" : "user"
+                          }`}
+                          className="nav-link"
+                          style={{ color: "#344c5c" }}
+                        >
+                          Dashboard
+                        </NavLink>
+                      </li>
+
+                      <li className="nav-item">
+                        <NavLink onClick={handleLogout} className="nav-link">
+                          Logout
+                        </NavLink>
+                      </li>
+                    </ul>
+                  </div>
                 </>
               )}
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <NavLink
                   to="/cart"
                   className="nav-link"
@@ -101,6 +134,35 @@ const Header = () => {
                   cart(0)
                 </NavLink>
               </li>
+              <div className="dropdown ">
+                <button
+                  className="btn btn-outline-secondary dropdown-toggle mx-2"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  {auth?.user?.name}
+                </button>
+                <ul className="dropdown-menu">
+                  <li className="nav-item">
+                    <NavLink
+                      to={`/dashboard/${
+                        auth?.user?.role === 1 ? "admin" : "user"
+                      }`}
+                      className="nav-link"
+                      style={{ color: "#344c5c" }}
+                    >
+                      Dashboard
+                    </NavLink>
+                  </li>
+
+                  <li className="nav-item">
+                    <NavLink onClick={handleLogout} className="nav-link">
+                      Logout
+                    </NavLink>
+                  </li>
+                </ul>
+              </div> */}
             </ul>
           </div>
         </div>

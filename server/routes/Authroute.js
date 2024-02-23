@@ -101,6 +101,7 @@ router.post("/login", async (req, res) => {
       user: {
         name: user.name,
         email: user.email,
+        role: user.role,
       },
       token,
     });
@@ -113,9 +114,15 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// protected routes:
+// protected routes for users:
 
 router.get("/user-auth", requireSignIn, (req, res) => {
+  res.status(200).send({ ok: true });
+});
+
+// protected routes for admins:
+
+router.get("/admin-auth", requireSignIn, isAdmin, (req, res) => {
   res.status(200).send({ ok: true });
 });
 
