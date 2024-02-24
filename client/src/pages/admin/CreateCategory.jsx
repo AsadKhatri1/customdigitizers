@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../components/layout/Layout";
 import AdminMenu from "../../components/layout/AdminMenu";
+import axios from "axios";
 
 const CreateCategory = () => {
+  const [categories, setCategories] = useState([]);
+ 
   return (
     <Layout>
       <div className="d-flex align-items-center justify-content-center">

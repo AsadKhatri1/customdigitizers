@@ -15,7 +15,7 @@ const AdminRoute = () => {
   const interval = setInterval(() => {
     setTimer((prev) => prev - 1);
   }, 1000);
-  // clearInterval(interval);
+  clearInterval(interval);
   console.log(time);
 
   // useEffect for accessing private routes

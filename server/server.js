@@ -17,6 +17,7 @@ app.use(cors());
 // routes
 app.use("/api", require("./routes/Authroute"));
 app.use("/api", require("./routes/Category"));
+app.use("/api", require("./routes/Product"));
 
 // port
 const port = process.env.PORT || 8080;
