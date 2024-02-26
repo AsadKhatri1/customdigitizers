@@ -167,7 +167,7 @@ router.put(
       //   destructuring photo file from product data
       const { photo } = req.files;
       //   making a copy of product
-      const products = new ProductModel.findByIdAndUpdate(
+      const products = await ProductModel.findByIdAndUpdate(
         req.params.id,
         { ...req.fields, slug: slugify(name) },
         { new: true }

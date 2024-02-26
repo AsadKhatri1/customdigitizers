@@ -9,7 +9,7 @@ const AdminMenu = () => {
     navigate("/login");
   };
   return (
-    <div>
+    <div className="mb-5">
       <ul className="list-group">
         <NavLink to="/dashboard/admin">
           <li className="list-group-item" aria-current="true">
