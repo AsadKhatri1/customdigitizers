@@ -5,7 +5,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import CategoryForm from "../../components/reusables/CategoryForm";
 import { useAuth } from "../../context/Auth";
-
+import { Button, Modal } from "antd";
 const CreateCategory = () => {
   const [auth, setAuth] = useAuth();
   const [categories, setCategories] = useState([]);
@@ -53,6 +53,28 @@ const CreateCategory = () => {
       toast.error("Error in adding new category");
     }
   };
+
+  // deleting category:
+  const handleDelete = async (id) => {
+    try {
+      const res = await axios.delete(
+        `http://localhost:8080/api/delete-category/${id}`,
+        {
+          headers: {
+            Authorization: await auth.token,
+          },
+        }
+      );
+      if (res.data.success) {
+        toast.success(res.data.message);
+        getAllCategories();
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("Error in deleting category");
+    }
+  };
+
   return (
     <Layout>
       <div className="d-flex align-items-center justify-content-center">
@@ -84,10 +106,16 @@ const CreateCategory = () => {
                         <tr>
                           <td key={c._id}>{c.name}</td>
                           <td>
-                            <button className="btn btn-primary ms-2">
+                            <button
+                              className="btn btn-primary ms-2"
+                              onClick={() => setVisible(true)}
+                            >
                               Edit
                             </button>
-                            <button className="btn btn-danger ms-2">
+                            <button
+                              className="btn btn-danger ms-2"
+                              onClick={() => handleDelete(c._id)}
+                            >
                               Delete
                             </button>
                           </td>
