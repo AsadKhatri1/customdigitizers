@@ -34,7 +34,7 @@ const RegisterForm = () => {
   };
   return (
     <>
-      <div className="min-vh-100 d-flex flex-column align-items-center justify-content-center">
+      <div className="min-vh-100 d-flex flex-column flex-sm-column-reverse align-items-center justify-content-center ">
         <form
           action="post"
           className="border rounded p-5 w-100"

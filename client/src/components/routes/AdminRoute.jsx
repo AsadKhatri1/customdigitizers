@@ -10,29 +10,22 @@ const AdminRoute = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // timer to go back to login
+  // getting auth token from localstorage
 
-  const interval = setInterval(() => {
-    setTimer((prev) => prev - 1);
-  }, 1000);
-  clearInterval(interval);
-  console.log(time);
+  const token = localStorage.getItem("auth");
+  const parseToken = JSON.parse(token);
 
   // useEffect for accessing private routes
-  useEffect(() => {
-    // Set the default authorization header for all requests
-    // console.log(auth?.token);
-    // const autho = localStorage.getItem("auth");
-    // axios.defaults.headers.common["Authorization"] = autho.token;
 
-    const authCheck = async () => {
-      const res = await axios.get("http://localhost:8080/api/admin-auth", {
-        headers: {
-          Authorization: await auth.token,
-        },
-      });
-      (await res.data.ok) ? setOk(true) : setOk(false);
-    };
+  const authCheck = async () => {
+    const res = await axios.get("http://localhost:8080/api/admin-auth", {
+      headers: {
+        Authorization: await parseToken.token,
+      },
+    });
+    (await res.data.ok) ? setOk(true) : setOk(false);
+  };
+  useEffect(() => {
     authCheck();
   }, []);
 

@@ -6,7 +6,7 @@ const Usermodel = require("../models/Usermodel");
 // checking if user is loggedin using token
 const requireSignIn = async (req, res, next) => {
   try {
-    const decode = await jwt.verify(
+    const decode = jwt.verify(
       req.headers.authorization,
       process.env.jwt_secret
     );
@@ -16,7 +16,9 @@ const requireSignIn = async (req, res, next) => {
     next();
   } catch (err) {
     console.error(err);
-    return res.status(401).json({ message: "Unauthorized" });
+    return res
+      .status(401)
+      .json({ message: "Unauthorized from require sign in" });
   }
 };
 

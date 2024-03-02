@@ -13,7 +13,14 @@ const CategoryForm = ({ value, submitHandler, setValue }) => {
             value={value}
             onChange={(e) => setValue(e.target.value)}
           />
-          <button type="submit" className="btn btn-primary mx-2">
+          <button
+            type="submit"
+            className="btn"
+            style={{
+              backgroundColor: "#344c5c",
+              color: "white",
+            }}
+          >
             Add
           </button>
         </div>

@@ -55,7 +55,7 @@ router.put("/update-category/:id", requireSignIn, isAdmin, async (req, res) => {
     );
     res.status(200).send({
       success: true,
-      message: "Category updated",
+      message: "Category updated successfully",
       category,
     });
   } catch (err) {
