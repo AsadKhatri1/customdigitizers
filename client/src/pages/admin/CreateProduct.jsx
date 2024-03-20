@@ -7,10 +7,10 @@ import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { Select } from "antd";
 import { useAuth } from "../../context/Auth";
-import { useNavigate } from "react-router-dom";
-
+import { NavLink, useNavigate } from "react-router-dom";
+const { Option } = Select;
 const CreateProduct = () => {
-  const { Option } = Select;
+  // const { Option } = Select;
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
   const [category, setcategory] = useState("");
@@ -44,6 +44,7 @@ const CreateProduct = () => {
   // craete product function
   const handleCreate = async (e) => {
     e.preventDefault();
+
     try {
       const productData = new FormData();
       productData.append("name", name);
@@ -87,122 +88,125 @@ const CreateProduct = () => {
             <div className="col-md-3">
               <AdminMenu />
             </div>
+
             <div className="col-md-9">
               <div>
-                <h2 className="fw-bold mb-4">Create Product</h2>
+                <h2 className="fw-bold mb-5">Create Product</h2>
 
-                <div className="m-1 w-100 text-center">
-                  <div className="mb-5 w-100">
-                    <input
-                      style={{
-                        textIndent: "10px",
-                        padding: "6px 0px",
-                        border: "none",
-                        borderBottom: "2px solid gray",
-                      }}
-                      className="w-100 form-input"
-                      type="text"
-                      name="name"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      placeholder="Product Name"
-                    />
-                  </div>
-
-                  <div className="mb-5 w-100">
-                    <textarea
-                      style={{
-                        textIndent: "10px",
-                        padding: "6px 0px",
-                        border: "none",
-                        borderBottom: "2px solid gray",
-                      }}
-                      className="w-100 form-input"
-                      type="text"
-                      name="description"
-                      value={description}
-                      onChange={(e) => setDescription(e.target.value)}
-                      placeholder="Product Description"
-                    />
-                  </div>
-
-                  <div className="mb-5 w-100">
-                    <input
-                      style={{
-                        textIndent: "10px",
-                        padding: "6px 0px",
-                        border: "none",
-                        borderBottom: "2px solid gray",
-                      }}
-                      className="w-100 form-input"
-                      type="number"
-                      prefix="$"
-                      min="0"
-                      name="price"
-                      value={price}
-                      onChange={(e) => setPrice(e.target.value)}
-                      placeholder="Product Price"
-                    />
-                  </div>
-
-                  <div className="mb-5 w-100">
-                    <input
-                      style={{
-                        textIndent: "10px",
-                        padding: "6px 0px",
-                        border: "none",
-                        borderBottom: "2px solid gray",
-                      }}
-                      className="w-100 form-input"
-                      type="number"
-                      name="quantity"
-                      value={quantity}
-                      min="0"
-                      onChange={(e) => setQuantity(e.target.value)}
-                      placeholder="Product Quantity"
-                    />
-                  </div>
-                  <div className="w-50 mb-5">
-                    <Select
-                      size="large"
-                      showSearch
-                      placeholder="Select a category"
-                      className="form-select mb-3"
-                      onChange={(value) => setcategory(value)}
-                    >
-                      {categories.map((c) => (
-                        <Option value={c._id} key={c._id}>
-                          {c.name}
-                        </Option>
-                      ))}
-                    </Select>
-                  </div>
-
-                  <div className="mb-5 w-50">
-                    <label className="btn btn-outline-secondary col-md-12">
-                      {photo ? photo.name : "Upload image"}
+                <div className="m-1 w-100 text-center mt-5">
+                  <form action="post" onSubmit={handleCreate}>
+                    <div className="mb-5 w-100">
                       <input
-                        type="file"
-                        name="photo"
-                        accept="image/*"
-                        onChange={(e) => setPhoto(e.target.files[0])}
-                        hidden
+                        style={{
+                          textIndent: "10px",
+                          padding: "6px 0px",
+                          border: "none",
+                          borderBottom: "2px solid gray",
+                        }}
+                        className="w-100 form-input"
+                        type="text"
+                        name="name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Product Name"
                       />
-                    </label>
-                  </div>
+                    </div>
 
-                  <div className="mb-5">
-                    <button
-                      style={{
-                        backgroundColor: "#344c5c",
-                        color: "white",
-                      }}
-                      type="submit"
-                      className="btn  mx-2"
-                    >
-                      Submit
-                    </button>
-                  </div>
+                    <div className="mb-5 w-100">
+                      <textarea
+                        style={{
+                          textIndent: "10px",
+                          padding: "6px 0px",
+                          border: "none",
+                          borderBottom: "2px solid gray",
+                        }}
+                        className="w-100 form-input"
+                        type="text"
+                        name="description"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        placeholder="Product Description"
+                      />
+                    </div>
+
+                    <div className="mb-5 w-100">
+                      <input
+                        style={{
+                          textIndent: "10px",
+                          padding: "6px 0px",
+                          border: "none",
+                          borderBottom: "2px solid gray",
+                        }}
+                        className="w-100 form-input"
+                        type="number"
+                        prefix="$"
+                        min="0"
+                        name="price"
+                        value={price}
+                        onChange={(e) => setPrice(e.target.value)}
+                        placeholder="Product Price"
+                      />
+                    </div>
+
+                    <div className="mb-5 w-100">
+                      <input
+                        style={{
+                          textIndent: "10px",
+                          padding: "6px 0px",
+                          border: "none",
+                          borderBottom: "2px solid gray",
+                        }}
+                        className="w-100 form-input"
+                        type="number"
+                        name="quantity"
+                        value={quantity}
+                        min="0"
+                        onChange={(e) => setQuantity(e.target.value)}
+                        placeholder="Product Quantity"
+                      />
+                    </div>
+                    <div className="w-50 mb-5">
+                      <Select
+                        size="large"
+                        showSearch
+                        placeholder="Select a category"
+                        className="form-select mb-3"
+                        onChange={(value) => setcategory(value)}
+                      >
+                        {categories.map((c) => (
+                          <Option value={c._id} key={c._id}>
+                            {c.name}
+                          </Option>
+                        ))}
+                      </Select>
+                    </div>
+
+                    <div className="mb-5 w-50">
+                      <label className="btn btn-outline-secondary col-md-12">
+                        {photo ? photo.name : "Upload image"}
+                        <input
+                          type="file"
+                          name="photo"
+                          accept="image/*"
+                          onChange={(e) => setPhoto(e.target.files[0])}
+                          hidden
+                        />
+                      </label>
+                    </div>
+
+                    <div className="mb-5">
+                      <button
+                        style={{
+                          backgroundColor: "#344c5c",
+                          color: "white",
+                        }}
+                        type="submit"
+                        className="btn  mx-2"
+                      >
+                        Submit
+                      </button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>

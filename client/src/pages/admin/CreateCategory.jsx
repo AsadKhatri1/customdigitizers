@@ -135,7 +135,7 @@ const CreateCategory = () => {
                     setValue={setName}
                   />
                 </div>
-                <h2 className="fw-bold">All Categories</h2>
+
                 <div>
                   {/* input for updating the caegory name */}
                   {show ? (
@@ -169,9 +169,9 @@ const CreateCategory = () => {
                               color: "white",
                             }}
                             type="submit"
-                            className="btn  mx-2"
+                            className="btn mx-2 my-3"
                           >
-                            Submit
+                            Update
                           </button>
                         </div>
                         <div className="cross">
@@ -193,6 +193,7 @@ const CreateCategory = () => {
                       </form>
                     </>
                   ) : null}
+                  <h2 className="fw-bold">All Categories</h2>
                   <table class="table">
                     <thead>
                       <tr>
