@@ -7,7 +7,7 @@ import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { Select } from "antd";
 import { useAuth } from "../../context/Auth";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 const { Option } = Select;
 const CreateProduct = () => {
   // const { Option } = Select;
@@ -19,7 +19,7 @@ const CreateProduct = () => {
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
   const [photo, setPhoto] = useState("");
-  const [showProducts, setShowProducts] = useState(false);
+  // const [showProducts, setShowProducts] = useState(false);
 
   // useAuth
   const [auth, setAuth] = useAuth();
@@ -53,6 +53,7 @@ const CreateProduct = () => {
       productData.append("quantity", quantity);
       productData.append("category", category);
       productData.append("photo", photo);
+
       const res = await axios.post(
         "http://localhost:8080/api/create-product",
         productData,
@@ -193,6 +194,23 @@ const CreateProduct = () => {
                         />
                       </label>
                     </div>
+                    <div>
+                      {photo && (
+                        <div>
+                          <h3>Preview</h3>
+                          <img
+                            style={{
+                              maxHeight: "200px",
+                              maxWidth: "200px",
+                              margin: "5px",
+                            }}
+                            src={URL.createObjectURL(photo)}
+                            alt="preview image"
+                            className="img img-responsive"
+                          />
+                        </div>
+                      )}
+                    </div>
 
                     <div className="mb-5">
                       <button
@@ -207,6 +225,19 @@ const CreateProduct = () => {
                       </button>
                     </div>
                   </form>
+                </div>
+                <div className="my-3">
+                  <Link
+                    to="/dashboard/admin/products"
+                    style={{
+                      backgroundColor: "#344c5c",
+                      color: "white",
+                    }}
+                    type="submit"
+                    className="btn  mx-2"
+                  >
+                    View All Products
+                  </Link>
                 </div>
               </div>
             </div>

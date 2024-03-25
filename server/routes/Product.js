@@ -13,6 +13,7 @@ router.post(
   isAdmin,
   //middlewear to get photo of the product
   expressFormidable(),
+
   async (req, res) => {
     try {
       // destructuring non-file data from req.fields
@@ -139,7 +140,7 @@ router.delete(
       if (product) {
         res.status(200).send({
           success: true,
-          message: "Single product deleted",
+          message: "Product is deleted",
           product,
         });
       }

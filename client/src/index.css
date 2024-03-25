@@ -29,3 +29,7 @@
 .submit:hover {
   background-color: #011a2b;
 }
+.product_link {
+  text-decoration: none !important;
+  color: black;
+}

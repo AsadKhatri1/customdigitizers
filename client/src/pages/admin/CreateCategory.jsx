@@ -215,7 +215,7 @@ const CreateCategory = () => {
                     </thead>
                     <tbody>
                       {categories?.map((c) => (
-                        <tr>
+                        <tr key={c._id}>
                           <td
                             key={c._id}
                             className="text-center fw-bold align-middle"
