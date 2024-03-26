@@ -106,7 +106,9 @@ const Header = () => {
                       <li className="nav-item">
                         <NavLink
                           to={`/dashboard/${
-                            auth?.user?.role === 1 ? "admin" : "user"
+                            auth?.user?.role === 1
+                              ? "admin/profile"
+                              : "user/profile"
                           }`}
                           className="nav-link"
                           style={{ color: "#344c5c" }}

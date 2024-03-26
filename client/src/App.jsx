@@ -31,13 +31,13 @@ function App() {
 
           {/* User dashoards private routes */}
           <Route path="/dashboard" element={<Private />}>
-            <Route path="user" element={<Dashboard />}></Route>
+            <Route path="user/profile" element={<Dashboard />}></Route>
             <Route path="user/orders" element={<Orders />}></Route>
           </Route>
 
           {/* Admin dashoards private routes */}
           <Route path="/dashboard" element={<AdminRoute />}>
-            <Route path="admin" element={<AdminDashboard />}></Route>
+            <Route path="admin/profile" element={<AdminDashboard />}></Route>
             <Route
               path="admin/create-category"
               element={<CreateCategory />}

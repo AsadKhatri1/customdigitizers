@@ -30,7 +30,12 @@ const Users = () => {
 
   const handleDelete = async (id) => {
     try {
-      console.log("button clicked");
+      let answer = window.prompt(
+        "Are you sure you want to delete the product?"
+      );
+      if (!answer) {
+        return;
+      }
       const res = await axios.delete(
         `http://localhost:8080/api/delete-product/${id}`,
         {
@@ -81,13 +86,16 @@ const Users = () => {
                           className="card-img-top center"
                           alt={item.name}
                           style={{
-                            maxHeight: "200px",
-                            maxWidth: "200px",
+                            height: "200px",
+                            width: "200px",
                           }}
                         />
                         <div className="card-body">
-                          <h5 className="card-title mb-3">{item.name}</h5>
-                          <p className="card-text">{item.description}</p>
+                          <h5 className="card-title mb-3 fw-bold">
+                            {item.name}
+                          </h5>
+                          <p>${item.price}</p>
+                          <p className="opacity-75">{item.category.name}</p>
                         </div>
                       </div>
                     </Link>

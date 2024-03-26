@@ -221,7 +221,7 @@ const CreateProduct = () => {
                         type="submit"
                         className="btn  mx-2"
                       >
-                        Submit
+                        Create
                       </button>
                     </div>
                   </form>

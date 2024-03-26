@@ -5,14 +5,14 @@ const UserMenu = () => {
   return (
     <div>
       <ul className="list-group">
-        <NavLink to="/dashboard/user">
-          <li className="list-group-item" aria-current="true">
+        <NavLink to="/dashboard/user/profile" className="product_link">
+          <li className="list-group-item fw-bold" aria-current="true">
             Profile
           </li>
         </NavLink>
 
-        <NavLink to="/dashboard/user/orders">
-          <li className="list-group-item">Orders</li>
+        <NavLink to="/dashboard/user/orders" className="product_link">
+          <li className="list-group-item fw-bold">Orders</li>
         </NavLink>
       </ul>
     </div>
