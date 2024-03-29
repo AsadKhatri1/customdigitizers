@@ -194,4 +194,17 @@ router.put(
     }
   }
 );
+
+// filter product
+router.get("/product-filter", async (req, res) => {
+  try {
+    const { checked, radio } = req.body;
+  } catch (err) {
+    console.log(err);
+    res.status(400).send({
+      success: false,
+      message: "Error in filtering ",
+    });
+  }
+});
 module.exports = router;

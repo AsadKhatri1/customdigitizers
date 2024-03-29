@@ -3,12 +3,13 @@ import Layout from "../components/layout/Layout";
 
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Checkbox } from "antd";
-
+import { Checkbox, Radio } from "antd";
+import { price } from "../components/Prices";
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [checked, setChecked] = useState([]);
+  const [radio, setRadio] = useState([]);
 
   //  getting all categories available
   const getAllCategories = async () => {
@@ -69,7 +70,17 @@ const Home = () => {
                 {c.name}
               </Checkbox>
             ))}
+
+            <h5 className="my-3">Price</h5>
+            <Radio.Group onChange={(e) => setRadio(e.target.value)}>
+              {price.map((p) => (
+                <Radio key={p.id} value={p.array}>
+                  {p.name}
+                </Radio>
+              ))}
+            </Radio.Group>
           </div>
+
           <div className="col-md-9">
             <h2 className="fw-bold">All Products</h2>
             {/* showing all products */}
@@ -105,9 +116,11 @@ const Home = () => {
                         <h5 className="card-title mb-3 fw-bold">{item.name}</h5>
                         <p>${item.price}</p>
                         <p className="opacity-75">{item.category.name}</p>
+
                         <button className="btn btn-dark ms-1">
                           More details
                         </button>
+
                         <button className="btn btn-success ms-1">
                           Add To Cart
                         </button>
