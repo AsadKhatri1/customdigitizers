@@ -41,8 +41,8 @@ const Home = () => {
   };
 
   useEffect(() => {
-    getAllProducts();
-  }, []);
+    if (!checked.length || !radio.length) getAllProducts();
+  }, [checked.length, radio.length]);
 
   // function for category filter
   const handleFilter = (value, id) => {
@@ -54,6 +54,24 @@ const Home = () => {
     }
     setChecked(all);
   };
+
+  // getting filtered products
+  const filteredProducts = async () => {
+    try {
+      const { data } = await axios.post(
+        `http://localhost:8080/api/product-filter`,
+        { checked, radio }
+      );
+      setProducts(data?.products);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    if (checked.length || radio.length) filteredProducts();
+  }, [checked, radio]);
+
   return (
     <Layout>
       <div className="container my-5 " style={{ height: "auto" }}>
@@ -79,6 +97,12 @@ const Home = () => {
                 </Radio>
               ))}
             </Radio.Group>
+            <button
+              className="my-5 btn btn-dark w-100"
+              onClick={() => window.location.reload()}
+            >
+              Clear Filters
+            </button>
           </div>
 
           <div className="col-md-9">
@@ -114,7 +138,9 @@ const Home = () => {
                       />
                       <div className="card-body">
                         <h5 className="card-title mb-3 fw-bold">{item.name}</h5>
+
                         <p>${item.price}</p>
+
                         <p className="opacity-75">{item.category.name}</p>
 
                         <button className="btn btn-dark ms-1">
