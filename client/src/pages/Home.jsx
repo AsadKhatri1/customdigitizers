@@ -5,6 +5,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { Checkbox, Radio } from "antd";
 import { price } from "../components/Prices";
+import SearchInput from "../components/reusables/SearchInput";
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -106,7 +107,10 @@ const Home = () => {
           </div>
 
           <div className="col-md-9">
+            <SearchInput />
+
             <h2 className="fw-bold">All Products</h2>
+
             {/* showing all products */}
 
             <div

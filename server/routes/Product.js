@@ -216,4 +216,25 @@ router.post("/product-filter", async (req, res) => {
     });
   }
 });
+
+// searching route
+
+router.get("/search/:keyword", async (req, res) => {
+  try {
+    const { keyword } = req.params;
+    const result = await ProductModel.find({
+      $or: [
+        { name: { $regex: keyword, $options: "i" } },
+        { description: { $regex: keyword, $options: "i" } },
+      ],
+    }).select("-photo");
+    res.json(result);
+  } catch (err) {
+    console.log(err);
+    res.status(400).send({
+      message: "Error in searching product",
+      err,
+    });
+  }
+});
 module.exports = router;
