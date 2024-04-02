@@ -78,7 +78,7 @@ const Users = () => {
                     <Link
                       className="product_link"
                       key={item._id}
-                      to={`/dashboard/admin/product/${item.slug}`}
+                      to={`/product/${item.slug}`}
                     >
                       <div className="card" style={{ width: "18rem" }}>
                         <img

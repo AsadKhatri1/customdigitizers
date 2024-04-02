@@ -32,7 +32,7 @@ const SearchInput = () => {
           type="search"
           placeholder="Search"
           aria-label="Search"
-          value={values.keywords}
+          value={values.keyword}
           onChange={(e) => setValues({ ...values, keyword: e.target.value })}
         />
         <button className="btn btn-outline-dark" type="submit">
