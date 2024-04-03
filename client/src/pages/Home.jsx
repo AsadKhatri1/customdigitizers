@@ -75,8 +75,8 @@ const Home = () => {
 
   return (
     <Layout>
-      <div className="container my-5 " style={{ height: "auto" }}>
-        <div className="row" style={{ height: "auto" }}>
+      <div className="container my-5 ">
+        <div className="row">
           <div className="col-md-3 mb-5">
             <h2 className="mb-5">Filter</h2>
             <h5 className="mb-3">Category</h5>

@@ -237,4 +237,30 @@ router.get("/search/:keyword", async (req, res) => {
     });
   }
 });
+
+// similar products
+router.get("/similar-products/:pid/:cid", async (req, res) => {
+  try {
+    const { pid, cid } = req.params;
+
+    const products = await ProductModel.find({
+      category: cid,
+      _id: { $ne: pid },
+    })
+      .select("-photo")
+      .limit(5)
+      .populate("category");
+    res.status(200).send({
+      success: true,
+      message: "Similar products found",
+      products,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(400).send({
+      message: "Error in searching similar product",
+      err,
+    });
+  }
+});
 module.exports = router;
