@@ -8,9 +8,13 @@ import { IoLogIn } from "react-icons/io5";
 import logo from "../../assets/logo.png";
 import { useAuth } from "../../context/Auth";
 import { toast } from "react-toastify";
-import SearchInput from "../reusables/SearchInput";
+import { FaCartShopping } from "react-icons/fa6";
+import { useCart } from "../../context/Cart";
+import { Badge } from "antd";
+
 const Header = () => {
   const [auth, setAuth] = useAuth();
+  const [cart, setCart] = useCart();
   const navigate = useNavigate();
   const handleLogout = (e) => {
     e.preventDefault();
@@ -84,19 +88,32 @@ const Header = () => {
                     <>
                       <li className="nav-item">
                         <NavLink
-                          to="/cart"
+                          to="/shop"
                           className="nav-link"
                           style={{ color: "#344c5c" }}
                         >
-                          <FaCartArrowDown className="mx-2 mb-1" />
-                          cart(0)
+                          <FaCartShopping className="mx-2 mb-1" />
+                          Shop
                         </NavLink>
                       </li>
+
+                      <Badge count={cart?.length} showZero>
+                        <li className="nav-item">
+                          <NavLink
+                            to="/cart"
+                            className="nav-link"
+                            style={{ color: "#344c5c", fontSize: "1.2rem" }}
+                          >
+                            <FaCartArrowDown className="mx-2 mb-1" />
+                            cart
+                          </NavLink>
+                        </li>
+                      </Badge>
                     </>
                   )}
                   <div className="dropdown ">
                     <button
-                      className="btn btn-outline-dark dropdown-toggle mx-2"
+                      className="btn btn-outline-dark dropdown-toggle mx-3"
                       type="button"
                       data-bs-toggle="dropdown"
                       aria-expanded="false"

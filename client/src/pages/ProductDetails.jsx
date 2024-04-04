@@ -62,7 +62,7 @@ const ProductDetails = () => {
         </div>
 
         {/* similar products */}
-        <div className="row ">
+        <div className="row center">
           <h2 className="mt-4">Similar Products</h2>
 
           {relatedProducts?.map((item, index) => (
@@ -70,8 +70,17 @@ const ProductDetails = () => {
               className="d-flex flex-row my-2 product_link col-md-3"
               key={item._id}
               to={`/product/${item.slug}`}
+              style={{
+                boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;",
+              }}
             >
-              <div className="card" style={{ width: "18rem" }}>
+              <div
+                className="card"
+                style={{
+                  width: "18rem",
+                  boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;",
+                }}
+              >
                 <img
                   src={`http://localhost:8080/api/product-photo/${item._id}`}
                   className="card-img-top center"

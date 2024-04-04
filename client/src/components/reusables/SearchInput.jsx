@@ -23,7 +23,7 @@ const SearchInput = () => {
   return (
     <div className="container my-4">
       <form
-        className="d-flex w-50 ms-auto w-sm-100"
+        className="d-flex w-75 ms-auto "
         role="search"
         onSubmit={searchHandler}
       >

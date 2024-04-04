@@ -20,6 +20,8 @@ import Orders from "./pages/user/Orders.jsx";
 import Products from "./pages/admin/Products.jsx";
 import Search from "./pages/Search.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
+import Cart from "./pages/Cart.jsx";
+import Shop from "./pages/Shop.jsx";
 
 function App() {
   return (
@@ -32,6 +34,8 @@ function App() {
           <Route path="/contact" element={<Contact />}></Route>
           <Route path="/search" element={<Search />}></Route>
           <Route path="/product/:slug" element={<ProductDetails />}></Route>
+          <Route path="/cart" element={<Cart />}></Route>
+          <Route path="/shop" element={<Shop />}></Route>
 
           {/* User dashoards private routes */}
           <Route path="/dashboard" element={<Private />}>

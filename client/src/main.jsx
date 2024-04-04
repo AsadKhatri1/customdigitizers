@@ -4,12 +4,15 @@ import App from "./App.jsx";
 import "./index.css";
 import { AuthProvider } from "./context/Auth.jsx";
 import { SearchProvider } from "./context/Search.jsx";
+import { CartProvider } from "./context/Cart.jsx";
 // import "antd/dist/antd.css"; // Import Ant Design CSS
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <AuthProvider>
     <SearchProvider>
-      <App />
+      <CartProvider>
+        <App />
+      </CartProvider>
     </SearchProvider>
   </AuthProvider>
 );
