@@ -102,7 +102,7 @@ const Header = () => {
                           <NavLink
                             to="/cart"
                             className="nav-link"
-                            style={{ color: "#344c5c", fontSize: "1.2rem" }}
+                            style={{ color: "#344c5c", fontSize: "1.1rem" }}
                           >
                             <FaCartArrowDown className="mx-2 mb-1" />
                             cart

@@ -13,9 +13,26 @@ const Cart = () => {
             Hi, Welcome {auth?.user.name}
           </h2>
           <div className="col-md-12">
-            {cart.map((item, i) => (
-              <h3 key={i}>{item.name}</h3>
-            ))}
+            <table className="table ">
+              {cart.map((item, i) => (
+                <tr>
+                  <td className="border">
+                    <img
+                      src={`http://localhost:8080/api/product-photo/${item._id}`}
+                      alt="cart image"
+                      className="my-3"
+                      style={{ width: "130px", height: "130px" }}
+                    />
+                  </td>
+                  <td>
+                    <h6>{item.name}</h6>
+                  </td>
+                  <td>
+                    <h6>$ {item.price}</h6>
+                  </td>
+                </tr>
+              ))}
+            </table>
           </div>
         </div>
       </div>
