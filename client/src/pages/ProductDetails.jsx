@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../components/layout/Layout";
+import { useCart } from "../context/Cart";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 const ProductDetails = () => {
+  const [cart, setCart] = useCart();
   const [product, setProduct] = useState({});
   const params = useParams();
   const [relatedProducts, setRelatedProducts] = useState([]);
@@ -57,7 +59,19 @@ const ProductDetails = () => {
 
             <p className="opacity-50">{product?.category?.name}</p>
             <p>{product?.description}</p>
-            <button className="btn btn-success">Add To Cart</button>
+            <button
+              className="btn btn-success"
+              onClick={() => {
+                setCart([...cart, product]);
+                localStorage.setItem(
+                  "cart",
+                  JSON.stringify([...cart, product])
+                );
+                toast.success("Item added to cart successfully");
+              }}
+            >
+              Add To Cart
+            </button>
           </div>
         </div>
 
