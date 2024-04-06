@@ -160,6 +160,10 @@ const Shop = () => {
                         className="btn btn-success ms-1"
                         onClick={() => {
                           setCart([...cart, item]);
+                          localStorage.setItem(
+                            "cart",
+                            JSON.stringify([...cart, item])
+                          );
                           toast.success("Item added to cart successfully");
                         }}
                       >
