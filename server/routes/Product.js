@@ -1,10 +1,20 @@
 const express = require("express");
 const { requireSignIn, isAdmin } = require("../middlewwears/authMiddlewear");
 const ProductModel = require("../models/ProductModel");
+const OrderModel = require("../models/OrderModel");
 const router = express.Router();
 const expressFormidable = require("express-formidable");
 const fs = require("fs");
 const slugify = require("slugify");
+var braintree = require("braintree");
+
+// PAYMENT GATEWAY
+var gateway = new braintree.BraintreeGateway({
+  environment: braintree.Environment.Sandbox,
+  merchantId: process.env.BRAINTREE_MERCHANT_ID,
+  publicKey: process.env.BRAINTREE_PUBLIC_KEY,
+  privateKey: process.env.BRAINTREE_PRIVATE_KEY,
+});
 
 // creating product
 router.post(
@@ -261,6 +271,63 @@ router.get("/similar-products/:pid/:cid", async (req, res) => {
       message: "Error in searching similar product",
       err,
     });
+  }
+});
+
+// payment toutes
+
+// token
+router.get("/braintree/token", async (req, res) => {
+  try {
+    gateway.clientToken.generate({}, function (err, response) {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.send(response);
+      }
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+// payment route
+router.post("/braintree/payment", requireSignIn, async (req, res) => {
+  try {
+    const { cart, nonce } = req.body;
+    let total = 0;
+    cart.map((i) => {
+      total += i.price;
+    });
+
+    let newTransaction = gateway.transaction.sale(
+      {
+        amount: total,
+        paymentMethodNonce: nonce,
+        options: {
+          submitForSettlement: true,
+        },
+      },
+      function (err, result) {
+        if (err) {
+          console.error(err);
+          return;
+        }
+
+        if (result.success) {
+          const order = new OrderModel({
+            products: cart,
+            payment: result,
+            buyer: req.user._id,
+          }).save();
+          res.status(200).json({ ok: true });
+        } else {
+          console.error(result.message);
+        }
+      }
+    );
+  } catch (err) {
+    console.log(err);
   }
 });
 module.exports = router;

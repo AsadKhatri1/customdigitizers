@@ -126,7 +126,7 @@ const Shop = () => {
               }}
             >
               {products?.map((item, index) => (
-                <div className="d-flex flex-column my-2">
+                <div className="d-flex flex-column my-2" key={item._id}>
                   {/* <Link
                     className="product_link"
                     key={item._id}
