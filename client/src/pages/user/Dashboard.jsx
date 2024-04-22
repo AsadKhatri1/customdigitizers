@@ -2,6 +2,7 @@ import React from "react";
 import Layout from "../../components/layout/Layout";
 import { useAuth } from "../../context/Auth";
 import UserMenu from "../../components/layout/UserMenu";
+import profile from "../../assets/profile.png";
 const Dashboard = () => {
   const [auth, setAuth] = useAuth();
   return (
@@ -13,11 +14,21 @@ const Dashboard = () => {
               <div className="col-md-3">
                 <UserMenu />
               </div>
-              <div className="col-md-9">
-                <div className="card">
-                  <h2>Welcome {auth?.user?.name}</h2>
-                  <h5>Name: {auth?.user?.name}</h5>
-                  <h5>Email: {auth?.user?.email}</h5>
+              <div className="col-md-9 " style={{ height: "75vh" }}>
+                <div className="card h-75 w-100 d-flex justify-content-center align-items-center flex-column">
+                  <img
+                    className="mb-3"
+                    src={profile}
+                    alt="profile"
+                    style={{
+                      width: "200px",
+                      height: "200px",
+                      borderRadius: "100%",
+                    }}
+                  />
+
+                  <h2 className="fw-bold">{auth?.user?.name}</h2>
+                  <h4 className="fw-bold">{auth?.user?.email}</h4>
                 </div>
               </div>
             </div>
