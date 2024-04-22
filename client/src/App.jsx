@@ -22,6 +22,8 @@ import Search from "./pages/Search.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
 import Cart from "./pages/Cart.jsx";
 import Shop from "./pages/Shop.jsx";
+import Success from "./pages/Success.jsx";
+import Cancel from "./pages/Cancel.jsx";
 
 function App() {
   return (
@@ -36,6 +38,11 @@ function App() {
           <Route path="/product/:slug" element={<ProductDetails />}></Route>
           <Route path="/cart" element={<Cart />}></Route>
           <Route path="/shop" element={<Shop />}></Route>
+          <Route
+            path="/successyeowmdjsbashdshdsjdbudhwuehuwy736427462813239/eu34637"
+            element={<Success />}
+          ></Route>
+          <Route path="/cancel" element={<Cancel />}></Route>
 
           {/* User dashoards private routes */}
           <Route path="/dashboard" element={<Private />}>

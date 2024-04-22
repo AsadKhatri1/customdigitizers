@@ -2,14 +2,15 @@ import React, { useState, useEffect } from "react";
 import Layout from "../components/layout/Layout";
 import { useCart } from "../context/Cart";
 import { useAuth } from "../context/Auth";
-import DropIn from "braintree-web-drop-in-react";
+import { loadStripe } from "@stripe/stripe-js";
+
 import axios from "axios";
+import { usePay } from "../context/Pay";
 const Cart = () => {
   const [cart, setCart] = useCart();
   const [auth, setAuth] = useAuth();
-  const [clientToken, setClientToken] = useState("");
-  const [instance, setInstance] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [pay, setPay] = usePay();
+
   // total price function
   const total = () => {
     let total = 0;
@@ -34,36 +35,37 @@ const Cart = () => {
     }
   };
 
-  // get poayment gateway token
-  const getToken = async () => {
-    try {
-      const { data } = await axios.get(
-        "http://localhost:8080/api/braintree/token"
-      );
-      setClientToken(data?.clientToken);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    getToken();
-  }, [auth]);
-
   // payment handler
-  const handlePayment = async () => {
-    try {
-      setLoading(true);
-      const { nonce } = await instance.requestPaymentMethod();
-      const { data } = await axios.post(
-        "http://localhost:8080/api/braintree/payment",
-        { nonce, cart }
-      );
-      setLoading(false);
-    } catch (err) {
-      console.log(err);
+  const makePayment = async () => {
+    await setPay(true);
+    const stripe = await loadStripe(
+      "pk_test_51P6XxyRtBNrco18AhacyCF5CsbTbaGj9iceQsSpkhkwgfzZpJyqAnMDa762Kktw3sGIbGRXiHM0bt4q0gLoVxVUL00tYoCbx3g"
+    );
+    const body = {
+      products: cart,
+    };
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    const response = await fetch(
+      "http://localhost:8080/api/create-checkout-session",
+      {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(body),
+      }
+    );
+
+    const session = await response.json();
+    const result = await stripe.redirectToCheckout({
+      sessionId: session.id,
+    });
+
+    if (result.error) {
+      castObject.log(result.error);
     }
   };
+
   return (
     <Layout>
       <div className="container">
@@ -142,6 +144,8 @@ const Cart = () => {
                 <button
                   className="btn btn-outline-success mt-3 w-100"
                   style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px" }}
+                  onClick={makePayment}
+                  disabled={cart.length < 1}
                 >
                   Checkout
                 </button>

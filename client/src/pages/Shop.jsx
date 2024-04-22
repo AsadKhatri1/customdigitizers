@@ -125,6 +125,11 @@ const Shop = () => {
                 flexWrap: "wrap",
               }}
             >
+              {products.length < 1 ? (
+                <h2 className="text-danger">No Products To SHow</h2>
+              ) : (
+                <></>
+              )}
               {products?.map((item, index) => (
                 <div className="d-flex flex-column my-2" key={item._id}>
                   {/* <Link

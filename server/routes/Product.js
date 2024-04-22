@@ -6,15 +6,10 @@ const router = express.Router();
 const expressFormidable = require("express-formidable");
 const fs = require("fs");
 const slugify = require("slugify");
-var braintree = require("braintree");
-
-// PAYMENT GATEWAY
-var gateway = new braintree.BraintreeGateway({
-  environment: braintree.Environment.Sandbox,
-  merchantId: process.env.BRAINTREE_MERCHANT_ID,
-  publicKey: process.env.BRAINTREE_PUBLIC_KEY,
-  privateKey: process.env.BRAINTREE_PRIVATE_KEY,
-});
+const { errorMonitor } = require("stream");
+const stripe = require("stripe")(
+  "sk_test_51P6XxyRtBNrco18AnIMU5oL85dp2GQEzSJPkJYynyDjBjPjs52lDKlY1jG8ktX9GjS0y2Q5p5zocNBQe7asFdYId00MzJKOAR4"
+);
 
 // creating product
 router.post(
@@ -274,58 +269,32 @@ router.get("/similar-products/:pid/:cid", async (req, res) => {
   }
 });
 
-// payment toutes
+// checkout api
 
-// token
-router.get("/braintree/token", async (req, res) => {
+router.post("/create-checkout-session", async (req, res) => {
   try {
-    gateway.clientToken.generate({}, function (err, response) {
-      if (err) {
-        res.status(500).send(err);
-      } else {
-        res.send(response);
-      }
-    });
-  } catch (err) {
-    console.log(err);
-  }
-});
+    const { products } = req.body;
 
-// payment route
-router.post("/braintree/payment", requireSignIn, async (req, res) => {
-  try {
-    const { cart, nonce } = req.body;
-    let total = 0;
-    cart.map((i) => {
-      total += i.price;
-    });
-
-    let newTransaction = gateway.transaction.sale(
-      {
-        amount: total,
-        paymentMethodNonce: nonce,
-        options: {
-          submitForSettlement: true,
+    const lineItems = products.map((product) => ({
+      price_data: {
+        currency: "usd",
+        product_data: {
+          name: product.name,
         },
+        unit_amount: product.price * 100,
       },
-      function (err, result) {
-        if (err) {
-          console.error(err);
-          return;
-        }
+      quantity: 1,
+    }));
 
-        if (result.success) {
-          const order = new OrderModel({
-            products: cart,
-            payment: result,
-            buyer: req.user._id,
-          }).save();
-          res.status(200).json({ ok: true });
-        } else {
-          console.error(result.message);
-        }
-      }
-    );
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+      line_items: lineItems,
+      mode: "payment",
+      success_url:
+        "http://localhost:5173/successyeowmdjsbashdshdsjdbudhwuehuwy736427462813239/eu34637",
+      cancel_url: "http://localhost:5173/cancel",
+    });
+    res.json({ id: session.id });
   } catch (err) {
     console.log(err);
   }
