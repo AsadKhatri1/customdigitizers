@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const userModel = require("../models/Usermodel");
 const { requireSignIn, isAdmin } = require("../middlewwears/authMiddlewear");
+const Usermodel = require("../models/Usermodel");
 // router object
 const router = express.Router();
 // routes
@@ -128,3 +129,46 @@ router.get("/admin-auth", requireSignIn, isAdmin, (req, res) => {
 
 // exporting route
 module.exports = router;
+
+// getting all users
+
+router.get("/get-users", async (req, res) => {
+  try {
+    // fetching all users
+    const users = await Usermodel.find({});
+
+    if (users) {
+      res.status(200).send({
+        success: true,
+        message: "All users",
+        users,
+      });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({
+      success: false,
+      message: "Error in fetching users",
+    });
+  }
+});
+
+// deleting user
+
+router.delete("/delete-user/:id", requireSignIn, isAdmin, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await Usermodel.findByIdAndDelete(id);
+    res.status(200).send({
+      success: true,
+      message: "User Deleted",
+      user,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({
+      success: false,
+      message: "Error in deleting the user",
+    });
+  }
+});

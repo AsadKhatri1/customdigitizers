@@ -52,6 +52,7 @@ const Users = () => {
       toast.error("Error in deleting product");
     }
   };
+
   return (
     <Layout>
       <div className="d-flex align-items-center justify-content-center">
@@ -101,7 +102,9 @@ const Users = () => {
                     </Link>
                     <button
                       className="btn btn-danger"
-                      onClick={() => handleDelete(item._id)}
+                      onClick={() => {
+                        handleDelete(item._id);
+                      }}
                     >
                       Delete
                     </button>
