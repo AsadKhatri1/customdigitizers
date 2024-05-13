@@ -8,6 +8,7 @@ import { usePay } from "../context/Pay";
 const Success = () => {
   const [cart, setCart] = useCart();
   const [auth, setAuth] = useAuth();
+
   const [pay, setPay] = usePay();
   const navigate = useNavigate();
   const emptyHandler = () => {
@@ -56,7 +57,8 @@ const Success = () => {
                       href={`http://localhost:8080/api/product-photo/${item._id}`}
                       download={`${item.name}.jpeg`}
                     >
-                      <IoMdCloudDownload className="mx-2" /> Download
+                      <IoMdCloudDownload className="mx-2" />
+                      Download
                     </a>
                   </td>
                 </tr>

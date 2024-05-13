@@ -195,10 +195,11 @@ const CreateCategory = () => {
                   ) : null}
                   <h2 className="fw-bold">All Categories</h2>
                   <table
-                    class="table"
+                    className="table"
                     style={{
                       boxShadow:
                         "rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px",
+                      borderRadius: "12px",
                     }}
                   >
                     <thead>

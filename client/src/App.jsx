@@ -24,6 +24,7 @@ import Cart from "./pages/Cart.jsx";
 import Shop from "./pages/Shop.jsx";
 import Success from "./pages/Success.jsx";
 import Cancel from "./pages/Cancel.jsx";
+import Downloads from "./pages/user/Downloads.jsx";
 
 function App() {
   return (
@@ -47,7 +48,7 @@ function App() {
           {/* User dashoards private routes */}
           <Route path="/dashboard" element={<Private />}>
             <Route path="user/profile" element={<Dashboard />}></Route>
-            <Route path="user/orders" element={<Orders />}></Route>
+            <Route path="user/downloads" element={<Downloads />}></Route>
           </Route>
 
           {/* Admin dashoards private routes */}

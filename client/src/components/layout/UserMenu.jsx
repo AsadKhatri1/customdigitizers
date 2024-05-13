@@ -11,8 +11,8 @@ const UserMenu = () => {
           </li>
         </NavLink>
 
-        <NavLink to="/dashboard/user/orders" className="product_link">
-          <li className="list-group-item fw-bold">Orders</li>
+        <NavLink to="/dashboard/user/downloads" className="product_link">
+          <li className="list-group-item fw-bold">Downloads</li>
         </NavLink>
       </ul>
     </div>
