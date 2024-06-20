@@ -32,7 +32,7 @@ const Search = () => {
                   >
                     <div className="card" style={{ width: "18rem" }}>
                       <img
-                        src={`http://localhost:8080/api/product-photo/${item._id}`}
+                        src={`https://customdigitizers-rk58.onrender.com/api/product-photo/${item._id}`}
                         className="card-img-top center"
                         alt={item.name}
                         style={{
@@ -61,54 +61,6 @@ const Search = () => {
               ))}
             </div>
           )}
-
-          {/* <div
-            className="main-products w-100 h-100"
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "start",
-              justifyContent: "space-evenly",
-              flexWrap: "wrap",
-            }}
-          >
-            {value?.results.map((item, index) => (
-              <div className="d-flex flex-column my-2">
-                <Link
-                  className="product_link"
-                  key={item._id}
-                  to={`/product/${item.slug}`}
-                >
-                  <div className="card" style={{ width: "18rem" }}>
-                    <img
-                      src={`http://localhost:8080/api/product-photo/${item._id}`}
-                      className="card-img-top center"
-                      alt={item.name}
-                      style={{
-                        height: "16rem",
-                        width: "17.9rem",
-                      }}
-                    />
-                    <div className="card-body">
-                      <h5 className="card-title mb-3 fw-bold">{item.name}</h5>
-
-                      <p>${item.price}</p>
-
-                      <p className="opacity-75">{item.category.name}</p>
-
-                      <button className="btn btn-dark ms-1">
-                        More details
-                      </button>
-
-                      <button className="btn btn-success ms-1">
-                        Add To Cart
-                      </button>
-                    </div>
-                  </div>
-                </Link>
-              </div>
-            ))}
-          </div> */}
         </div>
       </div>
     </Layout>

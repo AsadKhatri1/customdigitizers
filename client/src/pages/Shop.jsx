@@ -17,7 +17,9 @@ const Shop = () => {
   //  getting all categories available
   const getAllCategories = async () => {
     try {
-      const res = await axios.get("http://localhost:8080/api/get-categories");
+      const res = await axios.get(
+        "https://customdigitizers-rk58.onrender.com/api/get-categories"
+      );
       if (res.data.success) {
         setCategories(res.data.categories);
       }
@@ -35,7 +37,7 @@ const Shop = () => {
   const getAllProducts = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:8080/api/get-products"
+        "https://customdigitizers-rk58.onrender.com/api/get-products"
       );
       setProducts(data.products);
     } catch (err) {
@@ -62,7 +64,7 @@ const Shop = () => {
   const filteredProducts = async () => {
     try {
       const { data } = await axios.post(
-        `http://localhost:8080/api/product-filter`,
+        `https://customdigitizers-rk58.onrender.com/api/product-filter`,
         { checked, radio }
       );
       setProducts(data?.products);
@@ -139,7 +141,7 @@ const Shop = () => {
                   > */}
                   <div className="card" style={{ width: "18rem" }}>
                     <img
-                      src={`http://localhost:8080/api/product-photo/${item._id}`}
+                      src={`https://customdigitizers-rk58.onrender.com/api/product-photo/${item._id}`}
                       className="card-img-top"
                       alt={item.name}
                       style={{

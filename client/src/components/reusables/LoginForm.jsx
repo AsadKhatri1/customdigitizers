@@ -18,10 +18,13 @@ const LoginForm = () => {
       if (!email || !password) {
         return toast.error("Enter valid email or password");
       }
-      const res = await axios.post(`http://localhost:8080/api/login`, {
-        email,
-        password,
-      });
+      const res = await axios.post(
+        `https://customdigitizers-rk58.onrender.com/api/login`,
+        {
+          email,
+          password,
+        }
+      );
       if (res.data.success) {
         toast.success(res.data.message);
         localStorage.setItem("auth", JSON.stringify(res.data));

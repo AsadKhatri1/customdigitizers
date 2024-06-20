@@ -12,7 +12,9 @@ const Users = () => {
   const [auth, setAuth] = useAuth();
 
   const getAllUsers = async () => {
-    const { data } = await axios.get("http://localhost:8080/api/get-users");
+    const { data } = await axios.get(
+      "https://customdigitizers-rk58.onrender.com/api/get-users"
+    );
     if (data.users) {
       // setUsers(data.users);
       const filteredUsers = data.users.filter((u) => u.role === 0);
@@ -29,7 +31,7 @@ const Users = () => {
   const handleDelete = async (id) => {
     try {
       const res = await axios.delete(
-        `http://localhost:8080/api/delete-user/${id}`,
+        `https://customdigitizers-rk58.onrender.com/api/delete-user/${id}`,
         {
           headers: {
             Authorization: await auth.token,

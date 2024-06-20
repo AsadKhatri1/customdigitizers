@@ -41,7 +41,7 @@ const Success = () => {
                 <tr style={{ borderBottom: "1px solid gray" }} key={item._id}>
                   <td className="w-25" style={{ verticalAlign: "middle" }}>
                     <img
-                      src={`http://localhost:8080/api/product-photo/${item._id}`}
+                      src={`https://customdigitizers-rk58.onrender.com/api/product-photo/${item._id}`}
                       alt="cart image"
                       className="my-3"
                       style={{ width: "100px", height: "100px" }}

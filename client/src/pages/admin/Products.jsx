@@ -13,7 +13,7 @@ const Users = () => {
   const getAllProducts = async () => {
     try {
       const productList = await axios.get(
-        "http://localhost:8080/api/get-products"
+        "https://customdigitizers-rk58.onrender.com/api/get-products"
       );
       setProducts(productList.data.products);
     } catch (err) {
@@ -37,7 +37,7 @@ const Users = () => {
         return;
       }
       const res = await axios.delete(
-        `http://localhost:8080/api/delete-product/${id}`,
+        `https://customdigitizers-rk58.onrender.com/api/delete-product/${id}`,
         {
           headers: {
             Authorization: await auth.token,
@@ -83,7 +83,7 @@ const Users = () => {
                     >
                       <div className="card" style={{ width: "18rem" }}>
                         <img
-                          src={`http://localhost:8080/api/product-photo/${item._id}`}
+                          src={`https://customdigitizers-rk58.onrender.com/api/product-photo/${item._id}`}
                           className="card-img-top center"
                           alt={item.name}
                           style={{

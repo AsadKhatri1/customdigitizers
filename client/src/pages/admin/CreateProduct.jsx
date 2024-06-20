@@ -27,7 +27,9 @@ const CreateProduct = () => {
   //  getting all categories available
   const getAllCategories = async () => {
     try {
-      const res = await axios.get("http://localhost:8080/api/get-categories");
+      const res = await axios.get(
+        "https://customdigitizers-rk58.onrender.com/api/get-categories"
+      );
       if (res.data.success) {
         setCategories(res.data.categories);
       }
@@ -55,7 +57,7 @@ const CreateProduct = () => {
       productData.append("photo", photo);
 
       const res = await axios.post(
-        "http://localhost:8080/api/create-product",
+        "https://customdigitizers-rk58.onrender.com/api/create-product",
         productData,
         {
           headers: {

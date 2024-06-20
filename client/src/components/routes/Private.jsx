@@ -26,11 +26,14 @@ const Private = () => {
     // axios.defaults.headers.common["Authorization"] = autho.token;
 
     const authCheck = async () => {
-      const res = await axios.get("http://localhost:8080/api/user-auth", {
-        headers: {
-          Authorization: await auth.token,
-        },
-      });
+      const res = await axios.get(
+        "https://customdigitizers-rk58.onrender.com/api/user-auth",
+        {
+          headers: {
+            Authorization: await auth.token,
+          },
+        }
+      );
       (await res.data.ok) ? setOk(true) : setOk(false);
     };
     authCheck();

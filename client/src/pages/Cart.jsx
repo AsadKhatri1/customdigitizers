@@ -48,7 +48,7 @@ const Cart = () => {
       "Content-Type": "application/json",
     };
     const response = await fetch(
-      "http://localhost:8080/api/create-checkout-session",
+      "https://customdigitizers-rk58.onrender.com/api/create-checkout-session",
       {
         method: "POST",
         headers: headers,
@@ -85,7 +85,7 @@ const Cart = () => {
                   <tr style={{ borderBottom: "1px solid gray" }} key={item._id}>
                     <td className="w-25" style={{ verticalAlign: "middle" }}>
                       <img
-                        src={`http://localhost:8080/api/product-photo/${item._id}`}
+                        src={`https://customdigitizers-rk58.onrender.com/api/product-photo/${item._id}`}
                         alt="cart image"
                         className="my-3"
                         style={{ width: "100px", height: "100px" }}

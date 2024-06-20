@@ -11,7 +11,7 @@ const SearchInput = () => {
     e.preventDefault();
     try {
       const { data } = await axios.get(
-        `http://localhost:8080/api/search/${values.keyword}`
+        `https://customdigitizers-rk58.onrender.com/api/search/${values.keyword}`
       );
       setValues({ ...values, results: data });
       navigate("/search");

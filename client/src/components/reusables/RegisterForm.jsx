@@ -16,11 +16,14 @@ const RegisterForm = () => {
       if (!email || !password) {
         return toast.error("Enter valid email or password");
       }
-      const res = await axios.post("http://localhost:8080/api/register", {
-        name,
-        email,
-        password,
-      });
+      const res = await axios.post(
+        "https://customdigitizers-rk58.onrender.com/api/register",
+        {
+          name,
+          email,
+          password,
+        }
+      );
       if (res.data.success) {
         toast.success(res.data.message);
         navigate("/login");

@@ -16,7 +16,9 @@ const CreateCategory = () => {
   //  getting all categories available
   const getAllCategories = async () => {
     try {
-      const res = await axios.get("http://localhost:8080/api/get-categories");
+      const res = await axios.get(
+        "https://customdigitizers-rk58.onrender.com/api/get-categories"
+      );
       if (res.data.success) {
         setCategories(res.data.categories);
       }
@@ -38,7 +40,7 @@ const CreateCategory = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:8080/api/create-category",
+        "https://customdigitizers-rk58.onrender.com/api/create-category",
         { name },
         {
           headers: {
@@ -63,7 +65,7 @@ const CreateCategory = () => {
   const handleDelete = async (id) => {
     try {
       const res = await axios.delete(
-        `http://localhost:8080/api/delete-category/${id}`,
+        `https://customdigitizers-rk58.onrender.com/api/delete-category/${id}`,
         {
           headers: {
             Authorization: await auth.token,
@@ -85,7 +87,7 @@ const CreateCategory = () => {
     setPutId(id);
     try {
       const res = await axios.get(
-        `http://localhost:8080/api/get-category/${slug}`
+        `https://customdigitizers-rk58.onrender.com/api/get-category/${slug}`
       );
       if (res) {
         setEditName(res.data.category[0].name);
@@ -99,7 +101,7 @@ const CreateCategory = () => {
     e.preventDefault();
     try {
       const res = await axios.put(
-        `http://localhost:8080/api/update-category/${putId}`,
+        `https://customdigitizers-rk58.onrender.com/api/update-category/${putId}`,
         { name: editName },
         {
           headers: {

@@ -11,7 +11,7 @@ const ProductDetails = () => {
   // getProduct
   const getSingleProduct = async () => {
     const { data } = await axios.get(
-      `http://localhost:8080/api/get-product/${params.slug}`
+      `https://customdigitizers-rk58.onrender.com/api/get-product/${params.slug}`
     );
     if (data.product) {
       setProduct(data.product);
@@ -27,7 +27,7 @@ const ProductDetails = () => {
   const getSimilarProduct = async (pid, cid) => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8080/api/similar-products/${pid}/${cid}`
+        `https://customdigitizers-rk58.onrender.com/api/similar-products/${pid}/${cid}`
       );
       setRelatedProducts(data?.products);
     } catch (err) {
@@ -40,7 +40,7 @@ const ProductDetails = () => {
         <div className="row">
           <div className="col-md-4 border">
             <img
-              src={`http://localhost:8080/api/product-photo/${product?._id}`}
+              src={`https://customdigitizers-rk58.onrender.com/api/product-photo/${product?._id}`}
               className="card-img-top center "
               alt={product?.name}
               style={{
@@ -96,7 +96,7 @@ const ProductDetails = () => {
                 }}
               >
                 <img
-                  src={`http://localhost:8080/api/product-photo/${item._id}`}
+                  src={`https://customdigitizers-rk58.onrender.com/api/product-photo/${item._id}`}
                   className="card-img-top center"
                   alt={item.name}
                   style={{

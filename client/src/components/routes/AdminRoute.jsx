@@ -18,11 +18,14 @@ const AdminRoute = () => {
   // useEffect for accessing private routes
 
   const authCheck = async () => {
-    const res = await axios.get("http://localhost:8080/api/admin-auth", {
-      headers: {
-        Authorization: await parseToken.token,
-      },
-    });
+    const res = await axios.get(
+      "https://customdigitizers-rk58.onrender.com/api/admin-auth",
+      {
+        headers: {
+          Authorization: await parseToken.token,
+        },
+      }
+    );
     (await res.data.ok) ? setOk(true) : setOk(false);
   };
   useEffect(() => {
